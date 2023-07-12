@@ -1,0 +1,15 @@
+{
+    "name": "nicka/crud_js_php",
+    "autoload": {
+        "psr-4": {
+            "Nicka\\CrudJsPhp\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Petit-Homme Wadly",
+            "email": "wadleyp96@gmail.com"
+        }
+    ],
+    "require": {}
+}
