@@ -50,7 +50,7 @@ class UsersDAO{
             }
             return $f_lista;
         } catch (Exception $e) {
-            print "Ocorreu um erro ao tentar Buscar Todos." . $e;
+            print "erro." . $e;
         }
     }
 

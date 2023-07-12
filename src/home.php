@@ -46,36 +46,36 @@ if (!isset($_SESSION['user'])) {
 					<div class="container-fluid" id="firstSection">
 						<div class="row">
 							<div class="col-4">
-								<form action="controller/CreateUserCrt.php" method="POST">
+								<form action="" method="POST"  id="insertUser">
 									<div class="mb-2">
 										<label>Nom</label>
-										<input type="text" name="nom" value="" autofocus class="form-control" required />
+										<input type="text" name="nom" id="nom" value="" autofocus class="form-control" required />
 									</div>
 									<div class="mb-2">
 										<label>Prenom</label>
-										<input type="text" name="prenom" value="" class="form-control" required />
+										<input type="text" name="prenom" id="prenom" value="" class="form-control" required />
 									</div>
 
 									<div class="mb-2">
 										<label>Username</label>
-										<input type="text" name="username" value="" class="form-control" required />
+										<input type="text" name="username" id="username" value="" class="form-control" required />
 									</div>
 
 									<div class="mb-2">
 										<label>Password</label>
-										<input type="password" name="password" value="" class="form-control" required />
+										<input type="password" name="password" id="password" value="" class="form-control" required />
 									</div>
 
 									<div class="mb-2">
 										<label>Role</label>
-										<select name="role" class="form-control">
+										<select name="role" id="role" class="form-control">
 											<option value="Admin">Admin</option>
 											<option value="caissier">caissier</option>
 										</select>
 									</div>
 									<div class="mb-2">
 										<label>Sex</label>
-										<select name="sex" class="form-control">
+										<select name="sex" id="sex" class="form-control">
 											<option value="M">Masculin</option>
 											<option value="F">Feminin</option>
 										</select>
@@ -247,16 +247,22 @@ if (!isset($_SESSION['user'])) {
 			<div class="row">
 				<div class="col-4">
 					<h2 class="alert alert-primary">Add a new product</h2>
-					<form action="controller/CreateProd.php" method="POST">
-						<div class="form-group">
+					<form action="controller/UpdateProduct.php" method="POST">
+						<div class="mb-2">
 							<label for="nomProduit">Nom du produit:</label>
 							<input type="text" class="form-control" id="nomProduit" name="nomProduit">
+						</div>
+						<div class="mb-2">
 							<label for="prix">Prix:</label>
 							<input type="text" class="form-control" id="prix" name="prix">
-							<label for="description">Description:</label>
-							<textarea class="form-control" id="description" name="description"></textarea>
 						</div>
-						<button type="submit" name="submit" class="btn btn-primary">Add</button>
+						<div class="mb-2">
+							<label for="description">Description:</label>
+							<textarea class="form-control"  id="description" name="description"></textarea>
+						</div>						
+						<div class="mb-2">
+							<button class="btn btn-primary" type="submit" name="updateProd">Update</button>
+						</div>
 					</form>
 				</div>					
 				<div class="col-8">
@@ -300,14 +306,22 @@ if (!isset($_SESSION['user'])) {
 										</div>
 										<div class="modal-body">
 											<form action="controller/UpdateProduct.php" method="POST">
-												<label for="nomProduit">Nom du produit:</label>
-												<input type="text" class="form-control" value="<?= $prod->getNomProduit() ?>" id="nomProduit" name="nomProduit">
-												<label for="prix">Prix:</label>
-												<input type="text" class="form-control" value="<?= $prod->getPrix() ?>" id="prix" name="prix">
-												<label for="description">Description:</label>
-												<textarea class="form-control" value="" id="description" name="description"><?= $prod->getDescription() ?></textarea>
-												<input type="hidden" name="id" value="<?= $prod->getId() ?>" />
-												<button class="btn btn-primary" type="submit" name="updateProd">Update</button>
+												<div class="mb-2">
+													<label for="nomProduit">Nom du produit:</label>
+													<input type="text" class="form-control" value="<?= $prod->getNomProduit() ?>" id="nomProduit" name="nomProduit">
+												</div>
+												<div class="mb-2">
+													<label for="prix">Prix:</label>
+													<input type="text" class="form-control" value="<?= $prod->getPrix() ?>" id="prix" name="prix">
+												</div>
+												<div class="mb-2">
+													<label for="description">Description:</label>
+													<textarea class="form-control" value="<?= $prod->getDescription() ?>" id="description" name="description"></textarea>
+												</div>						
+												<div class="mb-2">
+													<input type="hidden" name="id" value="<?= $prod->getId() ?>" />
+													<button class="btn btn-primary" type="submit" name="updateProd">Update</button>
+												</div>
 											</form>
 										</div>
 									</div>
