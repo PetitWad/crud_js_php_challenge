@@ -28,8 +28,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $users->setSex($sex);
     $users->setStatut($statut);
 
-    $usersdao->create($users);
-    header("Location: ../home.php");
+    if($users > 0) {
+        $usersdao->create($users);
+        header("Location: ../home.php");
+    }
+    
 
   // Envoyer la réponse JSON
   header('Content-Type: application/json');
