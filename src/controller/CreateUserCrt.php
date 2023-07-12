@@ -28,9 +28,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $users->setSex($sex);
     $users->setStatut($statut);
 
-    var_dump($users);
-    exit(); 
-
     $usersdao->create($users);
     header("Location: ../home.php");
 
