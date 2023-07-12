@@ -54,6 +54,21 @@ class UsersDAO{
         }
     }
 
+    public function read_user_exist($username) {
+        try {
+            $user = $_SESSION['user'];
+            $sql = "SELECT * FROM users  where  username = '$username'";
+            $result = connexion::getConnexion()->query($sql);
+            $lista = $result->fetchAll(PDO::FETCH_ASSOC);
+            $f_lista = array();
+            foreach ($lista as $l) {
+                $f_lista[] = $this->listUsers($l);
+            }
+            return $f_lista;
+        } catch (Exception $e) {
+            print "Ocorreu um erro ao tentar Buscar Todos." . $e;
+        }
+    }
 
     private function listUsers($row) {
         $users = new Users();
@@ -176,7 +191,7 @@ class UsersDAO{
     public function login_users($username, $password) {
         try {
 
-            $sql ="SELECT * FROM `users` WHERE username=:username and password=:password ";
+            $sql ="SELECT * FROM `users` WHERE username=:username and password=:password statut =1 ";
 
             $query= connexion::getConnexion()->prepare($sql);
             

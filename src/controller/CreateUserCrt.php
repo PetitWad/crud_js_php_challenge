@@ -23,7 +23,11 @@ if(isset($_POST['submit'])){
     $users->setSex($d['sex']);
     $users->setStatut([$statut]);
 
-    $usersdao->create($users);
+    if($usersdao->read_user_exist($d['username'])){
+        echo "<script>alert('User exist !');</script>";
+    }else{
+        $usersdao->create($users);
+    }
 
     header("Location: ../home.php");
 } 
