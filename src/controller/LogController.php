@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $_SESSION['user'] = $username;
   }else {
     $response['status'] = false;
-    $response['message'] = "Identifiants incorrects.";
+    $response['message'] = "Vous n'avez pas de compte ou vous etes desactiver.";
   }
 
   // Envoyer la réponse JSON

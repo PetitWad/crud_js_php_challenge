@@ -1,5 +1,4 @@
 <?php
-
 include_once "../connexion/connexion.php";
 include_once "../model/Users.php";
 include_once "../dao/UsersDAO.php";
@@ -14,25 +13,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nom = $_POST['nom'];
     $prenom = $_POST['prenom'];
     $username = $_POST['username'];
-    $password = $_POST['password'];
     $role = $_POST['role'];
     $sex = $_POST['sex'];
+    $id = $_POST['id'];
 
-    // formatage par l'objet Users
-    $statut = 1;
+    
+
+    // formatage par l'objet User
     $users->setNom($nom);
-    $users->setPrenom($prenom);
-    $users->setUsername($username);
-    $users->setPassword($password);
+    $users->setPrenom($prenom );
+    $users->setUsername($username );
     $users->setRole($role);
     $users->setSex($sex);
-    $users->setStatut($statut);
+    $users->setId($id);
 
-    if($usersdao->read_user_exist($username )){
-        echo "<script>alert('User exist !');</script>";
-    }else{
-        $usersdao->create($users);
-    }
+    $usersdao->update($users);
+    header("Location: ../home.php");
     
 
   // Envoyer la réponse JSON

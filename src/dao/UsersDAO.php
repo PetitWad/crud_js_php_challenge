@@ -54,6 +54,36 @@ class UsersDAO{
         }
     }
 
+    public function read_user_exist($username) {
+        try {
+            $user = $_SESSION['user'];
+            $sql = "SELECT * FROM users  where  username = '$username'";
+            $result = connexion::getConnexion()->query($sql);
+            $lista = $result->fetchAll(PDO::FETCH_ASSOC);
+            $f_lista = array();
+            foreach ($lista as $l) {
+                $f_lista[] = $this->listUsers($l);
+            }
+            return $f_lista;
+        } catch (Exception $e) {
+            print "Ocorreu um erro ao tentar Buscar Todos." . $e;
+        }
+    }
+
+    public function read_by_id($id) {
+        try {
+            $sql = "SELECT * FROM users where id = $id"; 
+            $result = connexion::getConnexion()->query($sql);
+            $lista = $result->fetchAll(PDO::FETCH_ASSOC);
+            $f_lista = array();
+            foreach ($lista as $l) {
+                $f_lista[] = $this->listUsers($l);
+            }
+            return $f_lista;
+        } catch (Exception $e) {
+            print "erreur." . $e;
+        }
+    }
 
     private function listUsers($row) {
         $users = new Users();
@@ -84,7 +114,6 @@ class UsersDAO{
              $p_sql->bindValue(":nom", $users->getNom());
              $p_sql->bindValue(":prenom", $users->getPrenom());
              $p_sql->bindValue(":username", $users->getUsername());
-            // $p_sql->bindValue(":password", $users->getPassword());
              $p_sql->bindValue(":role", $users->getRole());
              $p_sql->bindValue(":sex", $users->getSex());
              $p_sql->bindValue(":id", $users->getId());
@@ -176,7 +205,7 @@ class UsersDAO{
     public function login_users($username, $password) {
         try {
 
-            $sql ="SELECT * FROM `users` WHERE username=:username and password=:password ";
+            $sql ="SELECT * FROM `users` WHERE username=:username and password=:password and statut= 1";
 
             $query= connexion::getConnexion()->prepare($sql);
             

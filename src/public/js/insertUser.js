@@ -1,6 +1,7 @@
 $(document).ready(() => {
   $('#insertUser').submit((e) => {
-
+    e.preventDefault();
+    
     var dataForm = $('#insertUser')[0];
     var formData = new FormData(dataForm);
     $.ajax({

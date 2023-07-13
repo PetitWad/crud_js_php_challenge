@@ -32,6 +32,21 @@ class ProductDao{
         }
     }
 
+    public function read_by_id($id) {
+        try {
+            $sql = "SELECT * FROM product where id = $id"; 
+            $result = connexion::getConnexion()->query($sql);
+            $lista = $result->fetchAll(PDO::FETCH_ASSOC);
+            $f_lista = array();
+            foreach ($lista as $l) {
+                $f_lista[] = $this->listProduct($l);
+            }
+            return $f_lista;
+        } catch (Exception $e) {
+            print "erreur." . $e;
+        }
+    }
+
     private function listProduct($row) {
         $product = new Product();
         $product->setId($row['id']);
